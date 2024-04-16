@@ -1,5 +1,5 @@
-import { PieChart, Pie, Cell, ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { PieChart, Pie,  Cell, ResponsiveContainer } from "recharts"
 import { FiPieChart } from "react-icons/fi";
 import { BsTags } from "react-icons/bs";
 import { TbCalendarClock } from "react-icons/tb";
@@ -166,28 +166,31 @@ const Home = () => {
                 <h1>Top Products</h1>
                 <p>May-June 2021</p>
               </div>
-            <ResponsiveContainer>
+              <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
-                    <Pie
-                        cx="45%"
-                        cy="50%"
-                        data={piedata}
-                        startAngle={0}
-                        endAngle={360}
-                        dataKey="count"
-                    >
-                        <Cell name="Basic Tees" fill="#fecba6" />
-                        <Cell name="Custom Short Pants" fill="#b3d23f" />
-                        <Cell name="Super Hoodies" fill="#a44c9e" />
-                    </Pie>
-                    <Legend
-                        iconType="circle"
-                        layout="vertical"
-                        verticalAlign="middle"
-                        align="right"
-                    />
+                  <Pie
+                    cx="45%"
+                    cy="40%"
+                    data={piedata}
+                    startAngle={0}
+                    endAngle={360}
+                    innerRadius="40%"
+                    outerRadius="70%"
+                    dataKey="count"
+                  >
+                    <Cell name="Telugu" fill="#fecba6" />
+                    <Cell name="Hindi" fill="#b3d23f" />
+                    <Cell name="English" fill="#a44c9e" />
+                  </Pie>
+                  <Legend
+                    iconType="circle"
+                    layout="vertical"
+                    verticalAlign="middle"
+                    align="right"
+                  />
                 </PieChart>
-            </ResponsiveContainer>
+              </ResponsiveContainer>
+                        
 
 
             </div>
