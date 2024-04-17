@@ -178,6 +178,7 @@
 
 .card-icon {
     align-self: flex-end;
+    font-size: 24px;
 }
 .card-head{
     font-family: Lato;

@@ -1,17 +1,22 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { PieChart, Pie,  Cell, ResponsiveContainer } from "recharts"
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMoneyBill,faTags, faThumbsUp, faUserGroup } from '@fortawesome/free-solid-svg-icons'
+
+
 import { FiPieChart } from "react-icons/fi";
 import { BsTags } from "react-icons/bs";
 import { TbCalendarClock } from "react-icons/tb";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
-import { TbCashBanknote } from "react-icons/tb";
+// import { TbCashBanknote } from "react-icons/tb";
 
 import { AiOutlineSearch } from 'react-icons/ai'
 
 import { BiBell } from "react-icons/bi";
-import { AiOutlineLike } from "react-icons/ai";
-import { PiUsersBold } from "react-icons/pi";
+// import { AiOutlineLike } from "react-icons/ai";
+// import { PiUsersBold } from "react-icons/pi";
 import "./index.css"
 
 const COLORS = ['#98D89E', '#F6DC7D', '#EE8484'];
@@ -152,14 +157,14 @@ const Home = () => {
 
           <ul className="cards-list">
             <li className="card-item c1">
-              <TbCashBanknote className="card-icon" size={30}/>
+              <FontAwesomeIcon icon={faMoneyBill} className='card-icon'/>
               <p className="card-head">Total Revenues</p>
               <p className="card-amt">$2,129,430</p>
             </li>
 
 
             <li className="card-item c2">
-              <BsTags className="card-icon" size={30} />
+              <FontAwesomeIcon icon={faTags} className='card-icon' />
               <p className="card-head">Total Transactions</p>
               <p className="card-amt">1,520</p>
             </li>
@@ -167,7 +172,7 @@ const Home = () => {
 
 
             <li className="card-item c3">
-              <AiOutlineLike className="card-icon" size={30} />
+              <FontAwesomeIcon icon={faThumbsUp} className='card-icon' />
               <p className="card-head">Total Likes</p>
               <p className="card-amt">9,721</p>
             </li>
@@ -175,7 +180,7 @@ const Home = () => {
 
 
             <li className="card-item c4">
-              <PiUsersBold className="card-icon" size={30} />
+              <FontAwesomeIcon icon={faUserGroup} className='card-icon' />
               <p className="card-head">Total Users</p>
               <p className="card-amt">892</p>
             </li>
