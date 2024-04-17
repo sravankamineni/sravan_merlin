@@ -1,4 +1,4 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid,Legend } from 'recharts';
 import { PieChart, Pie,  Cell, ResponsiveContainer } from "recharts"
 import { FiPieChart } from "react-icons/fi";
 import { BsTags } from "react-icons/bs";
@@ -184,16 +184,27 @@ const Home = () => {
           <div className='act-cont'>
             <h1 className='act-head'>Activities</h1>
             <p className='act-date'>May-June 2021</p>
-            <ResponsiveContainer width="100%" height={200}>
-              <LineChart width={730} height={250} data={data}
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart width={730} height={350} data={data}
+                margin={{ top: 5, right: 30, left: 20, bottom: 5 }} 
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
                 <YAxis type="number" domain={[100, 500]} />
-                <Tooltip />
-                <Legend verticalAlign="top" height={36} />
+                <Legend
+                  iconType="circle"
+                  layout="horizontal"
+                  verticalAlign="top"
+                  align="right"
+                  height={70}
+                  wrapperStyle={{ fontFamily: 'Lato', }}
+                />
+               
+              
+    
                 <Line type="monotone" dataKey="Guest" stroke="#E9A0A0" />
                 <Line type="monotone" dataKey="User" stroke="#9BDD7C" />
+              
               </LineChart>
 
             </ResponsiveContainer>
