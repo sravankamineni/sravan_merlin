@@ -32,46 +32,54 @@ const Login = () => {
             <h1>Board.</h1>
         </div>
         <div className='login-form'>
-            <h1>Sign In</h1>
-            <p>Sign in to your Account</p>
-            <GoogleLogin
-                onSuccess={handleGoogleLoginSuccess}
-                onError={handleGoogleLoginError}
-            />
-            <form className="my-form">
-                <div className="input-cont">
-                    <label htmlFor="username" className="input-label">
-                        USERNAME
-                    </label>
-                    <input
-                        type="text"
-                        id="username"
-                        
-                        placeholder="Username"
-                        className="input"
+            <div className='login-app'>
+                <div className='login-para'>
+                    <h1 className='login-head'>Sign In</h1>
+                    <p className='login-desc'>Sign in to your Account</p>
+                    <GoogleLogin
+                        onSuccess={handleGoogleLoginSuccess}
+                        onError={handleGoogleLoginError}
+
                     />
                 </div>
+               
+                <form className="my-form">
+                    <div className="input-cont">
+                        <label htmlFor="username" className="input-label">
+                            Email address
+                        </label>
+                        <input
+                            type="text"
+                            id="username"
 
-                <div className="input-cont">
-                    <label htmlFor="password" className="input-label">
-                        PASSWORD
-                    </label>
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Password"
-                        className="input"
-                    />
-                </div>
+                                placeholder="Email"
+                            className="input"
+                        />
+                    </div>
 
-                <button type="submit" className="login-btn">
-                    Sign In
-                </button>
-                
-            </form>
+                    <div className="input-cont">
+                        <label htmlFor="password" className="input-label">
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Password"
+                            className="input"
+                        />
+                    </div>
 
+                    <button type="submit" className="login-btn">
+                        Sign In
+                    </button>
+
+                </form>
+
+
+            </div>
 
         </div>
+       
        
     </div>
     )

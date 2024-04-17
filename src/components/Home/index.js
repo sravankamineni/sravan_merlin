@@ -7,10 +7,28 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
 import { TbCashBanknote } from "react-icons/tb";
 
+import { AiOutlineSearch } from 'react-icons/ai'
+
 import { BiBell } from "react-icons/bi";
 import { AiOutlineLike } from "react-icons/ai";
 import { PiUsersBold } from "react-icons/pi";
 import "./index.css"
+
+const COLORS = ['#98D89E', '#F6DC7D', '#EE8484'];
+
+const RADIAN = Math.PI / 180;
+
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  return (
+    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
 
 const Home = () => {
     const data = [
@@ -40,18 +58,22 @@ const Home = () => {
   ]
   const piedata = [
     {
-      count: 809680,
+      count: 55,
       language: "Basic Tees",
     },
     {
-      count: 4555697,
+      count: 31,
       language: "Custom Short Pants",
     },
     {
-      count: 12345657,
+      count: 14,
       language: "Super Hoodies",
     },
   ]
+
+ 
+
+  
 
     return (
       <div className="app-cont">
@@ -107,9 +129,23 @@ const Home = () => {
           <nav className="nav-cont">
             <h1>Dashboard</h1>
             <div className="nav-details">
-              <input type="search" placeholder="Search"/>
-              <BiBell size={20}/>
-              <img alt="proimg" src="https://res.cloudinary.com/dnmcjyigq/image/upload/v1713249983/image_1pic_xdfu3e.jpg"/>
+
+              <div className='SearchInputCont'>
+                <input className='SearchInput'
+                  type="search"
+                  placeholder="Search"
+                />
+                <button className='SearchBtn'
+                  type="button"
+                >
+                  <AiOutlineSearch size="20" />
+                </button>
+              </div>
+              
+              <BiBell size={33} />
+              <img alt="proimg" className='pro-img' src="https://res.cloudinary.com/dnmcjyigq/image/upload/v1713249983/image_1pic_xdfu3e.jpg" />
+            
+              
             </div>
           </nav>
 
@@ -122,7 +158,7 @@ const Home = () => {
             </li>
 
 
-            <li className="card-item c1">
+            <li className="card-item c2">
               <BsTags className="card-icon" size={30} />
               <p className="card-head">Total Transactions</p>
               <p className="card-amt">1,520</p>
@@ -130,7 +166,7 @@ const Home = () => {
 
 
 
-            <li className="card-item c1">
+            <li className="card-item c3">
               <AiOutlineLike className="card-icon" size={30} />
               <p className="card-head">Total Likes</p>
               <p className="card-amt">9,721</p>
@@ -138,49 +174,57 @@ const Home = () => {
 
 
 
-            <li className="card-item c1">
+            <li className="card-item c4">
               <PiUsersBold className="card-icon" size={30} />
               <p className="card-head">Total Users</p>
               <p className="card-amt">892</p>
             </li>
           </ul>
 
-          <div>
-            <h1>Activities</h1>
-            <p>May-June 2021</p>
-            <LineChart width={730} height={250} data={data}
+          <div className='act-cont'>
+            <h1 className='act-head'>Activities</h1>
+            <p className='act-date'>May-June 2021</p>
+            <ResponsiveContainer width="100%" height={200}>
+              <LineChart width={730} height={250} data={data}
               >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis type="number" domain={[100, 500]} />
-              <Tooltip />
-              <Legend verticalAlign="top" height={36} />
-              <Line type="monotone" dataKey="Guest" stroke="#E9A0A0" />
-              <Line type="monotone" dataKey="User" stroke="#9BDD7C" />
-            </LineChart>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis type="number" domain={[100, 500]} />
+                <Tooltip />
+                <Legend verticalAlign="top" height={36} />
+                <Line type="monotone" dataKey="Guest" stroke="#E9A0A0" />
+                <Line type="monotone" dataKey="User" stroke="#9BDD7C" />
+              </LineChart>
+
+            </ResponsiveContainer>
+           
           </div>
 
+
+
           <div className='bot'>
+
             <div className='pie'>
               <div className='pie-head'>
-                <h1>Top Products</h1>
-                <p>May-June 2021</p>
+                <h1 className='pie-title'>Top Products</h1>
+                <p className='pie-date'>May-June 2021</p>
               </div>
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
+              <ResponsiveContainer width="100%" height={200}>
+                <PieChart width="100%">
                   <Pie
-                    cx="45%"
-                    cy="40%"
+                    cx="50%"
+                    cy="50%"
                     data={piedata}
                     startAngle={0}
                     endAngle={360}
-                    innerRadius="40%"
-                    outerRadius="70%"
                     dataKey="count"
+                    labelLine={false}
+                    label={renderCustomizedLabel}
+                    outerRadius={80}
                   >
-                    <Cell name="Telugu" fill="#fecba6" />
-                    <Cell name="Hindi" fill="#b3d23f" />
-                    <Cell name="English" fill="#a44c9e" />
+                    {piedata.map((entry, index) => (
+                      <Cell name={entry.language} key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
                   </Pie>
                   <Legend
                     iconType="circle"
@@ -196,21 +240,22 @@ const Home = () => {
             </div>
 
 
-            <div className='pie'>
+            <div className='schedule-cont'>
               <div className='pie-head'>
-                <h1>Today's schedule</h1>
-                <p>See All</p>
+                <h1 className='pie-title'>Today's schedule</h1>
+                <p className='pie-date'>See All</p>
               </div>
-              <div>
-                <h1>Meeting with suppliers form kuta bali</h1>
-                <p>14.00-15.00</p>
-                <p>at Sunset Road, Kuta Bali</p>
+              <div className='sch-card s1'>
+                <h1 className='sch-head'>Meeting with suppliers from Kuta Bali</h1>
+                <p className='sch-date'>14.00-15.00</p>
+                <p className='sch-adress'>at Sunset Road, Kuta Bali</p>
               </div>
-              <div>
-                <h1>Meeting with suppliers form kuta bali</h1>
-                <p>14.00-15.00</p>
-                <p>at Sunset Road, Kuta Bali</p>
+              <div className='sch-card s2'>
+                <h1 className='sch-head'>Check operation at Giga Factory 1</h1>
+                <p className='sch-date'>18.00-20.00</p>
+                <p className='sch-adress'>at Central Jakarta</p>
               </div>
+              
 
             </div>
 
